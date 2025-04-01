@@ -1,12 +1,17 @@
 import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import jose from './resources/headshots/jose_ayala.jpg';
 import brandon from './resources/headshots/brandon_ortiz.jpg';
+import InvincibleStory from './Invincible'; // Make sure this import matches your actual file name
 
-function App() {
+function Home() {
+  const navigate = useNavigate();
+
   return (
     <div className="App">
       <header className="App-header">
-          <h1>Welcome to Jose and Brandon's Website</h1>
+        <h1>Welcome to Jose and Brandon's Website</h1>
       </header>
       <div>
         <h2> Choose Your Fighter</h2>
@@ -26,12 +31,26 @@ function App() {
       <div className='Story-section'>
         <div className='Story-header'>
           <h2>Jose's Story Corner</h2>
+          <button rel="noreferrer" onClick={() => navigate('/invincible')}>
+            Read about the time Brandon and Jose became invincible.
+          </button>
         </div>
         <div className='article'>
           <p>Jose is a story teller and he's taking to drop some bars for us in this website! </p>
         </div>
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/invincible" element={<InvincibleStory />} />
+      </Routes>
+    </Router>
   );
 }
 
